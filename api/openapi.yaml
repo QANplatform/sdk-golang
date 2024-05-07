@@ -1,0 +1,3620 @@
+openapi: 3.1.0
+info:
+  title: QAN AutoApi
+  version: 0.0.1
+servers:
+- url: /
+paths:
+  /accounts/:
+    get:
+      description: Returns a list of addresses owned by client.
+      operationId: qan_accounts
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_accounts'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /blobBaseFee/:
+    get:
+      description: Returns the expected base fee for blobs in the next block.
+      operationId: qan_blobBaseFee
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_blobBaseFee'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /blockNumber/:
+    get:
+      description: Returns the latest block number of the blockchain.
+      operationId: qan_blockNumber
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_blockNumber'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /call/:
+    post:
+      description: Executes a new message call immediately without creating a transaction
+        on the block chain.
+      operationId: qan_call
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Input_call'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_call'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /chainId/:
+    get:
+      description: "Returns the current network/chain ID, used to sign replay-protected\
+        \ transaction introduced in EIP-155."
+      operationId: qan_chainId
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_chainId'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /estimateGas/:
+    post:
+      description: Returns an estimation of gas for a given transaction.
+      operationId: qan_estimateGas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Input_estimateGas'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_estimateGas'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /feeHistory/:
+    post:
+      description: Returns the collection of historical gas information.
+      operationId: qan_feeHistory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Input_feeHistory'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_feeHistory'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /gasPrice/:
+    get:
+      description: Returns the current gas price on the network in wei.
+      operationId: qan_gasPrice
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_gasPrice'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getAccount/{Address}/{BlockReference}/:
+    get:
+      description: Retrieves account details by specifying an address and a block
+        number/tag.
+      operationId: qan_getAccount
+      parameters:
+      - description: The account address for which the information is to be retrieved
+        examples:
+          with 0x, lowercase:
+            value: 0xa1e4380a3b1f749673e270229993ee55f35663b4
+          with 0x, mixed case:
+            value: 0xA1E4380A3B1f749673E270229993eE55F35663b4
+          with 0x, uppercase:
+            value: 0XA1E4380A3B1F749673E270229993EE55F35663B4
+          without 0x, mixed case:
+            value: A1E4380A3B1f749673E270229993eE55F35663b4
+        explode: false
+        in: path
+        name: Address
+        required: true
+        schema:
+          description: The account address for which the information is to be retrieved
+          type: string
+        style: simple
+      - description: "The block number in hexadecimal or decimal format or the string\
+          \ latest, earliest, pending, see the default block parameter description\
+          \ in the official Ethereum documentation"
+        examples:
+          latest block number:
+            value: latest
+        explode: false
+        in: path
+        name: BlockReference
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getAccount'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getBalance/{Address}/:
+    get:
+      description: Returns the balance of the account of given address.
+      operationId: qan_getBalance
+      parameters:
+      - description: A 20 bytes long hexadecimal value representing an Ethereum address
+        examples:
+          with 0x, lowercase:
+            value: 0xa1e4380a3b1f749673e270229993ee55f35663b4
+          with 0x, mixed case:
+            value: 0xA1E4380A3B1f749673E270229993eE55F35663b4
+          with 0x, uppercase:
+            value: 0XA1E4380A3B1F749673E270229993EE55F35663B4
+          without 0x, mixed case:
+            value: A1E4380A3B1f749673E270229993eE55F35663b4
+        explode: false
+        in: path
+        name: Address
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The block number in hexadecimal or decimal format or the string\
+          \ latest, earliest, pending, see the default block parameter description\
+          \ in the official Ethereum documentation"
+        explode: false
+        in: query
+        name: BlockNumber
+        required: false
+        schema:
+          default: latest
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getBalance'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getBlockByHash/{Hash}/{TransactionDetailFlag}/:
+    get:
+      description: Returns information of the block matching the given block hash.
+      operationId: qan_getBlockByHash
+      parameters:
+      - description: The hash (32 bytes) of the block
+        example: 0x4e3a3754410177e6937ef1f84bba68ea139e8d1a2258c5f85db9f1cd715a1bdd
+        explode: false
+        in: path
+        name: Hash
+        required: true
+        schema:
+          description: The hash (32 bytes) of the block
+          type: string
+        style: simple
+      - description: "The method returns the full transaction objects when this value\
+          \ is true otherwise, it returns only the hashes of the transactions"
+        explode: false
+        in: path
+        name: TransactionDetailFlag
+        required: true
+        schema:
+          default: false
+          description: "The method returns the full transaction objects when this\
+            \ value is true otherwise, it returns only the hashes of the transactions"
+          type: boolean
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getBlockByHash'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getBlockByNumber/{BlockNumber}/{TransactionDetailFlag}/:
+    get:
+      description: Returns information of the block matching the given block number.
+      operationId: qan_getBlockByNumber
+      parameters:
+      - description: "The block number in hexadecimal or decimal format or the string\
+          \ latest, earliest, pending, see the default block parameter description\
+          \ in the official Ethereum documentation"
+        explode: false
+        in: path
+        name: BlockNumber
+        required: true
+        schema:
+          default: latest
+          type: string
+        style: simple
+      - description: "The method returns the full transaction objects when this value\
+          \ is true otherwise, it returns only the hashes of the transactions"
+        explode: false
+        in: path
+        name: TransactionDetailFlag
+        required: true
+        schema:
+          default: false
+          description: "The method returns the full transaction objects when this\
+            \ value is true otherwise, it returns only the hashes of the transactions"
+          type: boolean
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getBlockByNumber'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getBlockReceipts/{BlockNumber}/:
+    get:
+      description: Returns all transaction receipts for a given block.
+      operationId: qan_getBlockReceipts
+      parameters:
+      - description: "The block number in hexadecimal or decimal format or the string\
+          \ latest, earliest, pending, see the default block parameter description\
+          \ in the official Ethereum documentation"
+        explode: false
+        in: path
+        name: BlockNumber
+        required: true
+        schema:
+          default: latest
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getBlockReceipts'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getBlockTransactionCountByHash/{Hash}/:
+    get:
+      description: Returns the number of transactions for the block matching the given
+        block hash.
+      operationId: qan_getBlockTransactionCountByHash
+      parameters:
+      - description: The hash of the block
+        examples:
+          with 0x, lowercase:
+            value: 0x4e3a3754410177e6937ef1f84bba68ea139e8d1a2258c5f85db9f1cd715a1bdd
+          with 0x, uppercase:
+            value: 0X4E3A3754410177E6937EF1F84BBA68EA139E8D1A2258C5F85DB9F1CD715A1BDD
+        explode: false
+        in: path
+        name: Hash
+        required: true
+        schema:
+          description: The hash of the block
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getBlockTransactionCountByHash'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getBlockTransactionCountByNumber/{BlockNumber}/:
+    get:
+      description: Returns the number of transactions for the block matching the given
+        block number.
+      operationId: qan_getBlockTransactionCountByNumber
+      parameters:
+      - description: "The block number in hexadecimal or decimal format or the string\
+          \ latest, earliest, pending, see the default block parameter description\
+          \ in the official Ethereum documentation"
+        examples:
+          latest block number:
+            value: latest
+        explode: false
+        in: path
+        name: BlockNumber
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getBlockTransactionCountByNumber'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getCode/{Address}/:
+    get:
+      description: Returns the compiled bytecode of a smart contract.
+      operationId: qan_getCode
+      parameters:
+      - description: The address of the smart contract from which the bytecode will
+          be obtained
+        examples:
+          with 0x, lowercase:
+            value: 0xa1e4380a3b1f749673e270229993ee55f35663b4
+          with 0x, mixed case:
+            value: 0xA1E4380A3B1f749673E270229993eE55F35663b4
+          with 0x, uppercase:
+            value: 0XA1E4380A3B1F749673E270229993EE55F35663B4
+          without 0x, mixed case:
+            value: A1E4380A3B1f749673E270229993eE55F35663b4
+        explode: false
+        in: path
+        name: Address
+        required: true
+        schema:
+          description: The address of the smart contract from which the bytecode will
+            be obtained
+          type: string
+        style: simple
+      - description: "The block number in hexadecimal or decimal format or the string\
+          \ latest, earliest, pending, see the default block parameter description\
+          \ in the official Ethereum documentation"
+        examples:
+          latest block number:
+            value: latest
+        explode: false
+        in: query
+        name: BlockNumber
+        required: false
+        schema:
+          default: latest
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getCode'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getFilterChanges/{FilterId}/:
+    get:
+      description: "Polling method for a filter, which returns an array of events\
+        \ that have occurred since the last poll."
+      operationId: qan_getFilterChanges
+      parameters:
+      - description: "The filter id that is returned from eth_newFilter, eth_newBlockFilter\
+          \ or eth_newPendingTransactionFilter"
+        explode: false
+        in: path
+        name: FilterId
+        required: true
+        schema:
+          description: "The filter id that is returned from eth_newFilter, eth_newBlockFilter\
+            \ or eth_newPendingTransactionFilter"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getFilterChanges'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getFilterLogs/{Id}/:
+    get:
+      description: Returns an array of all logs matching filter with given id.
+      operationId: qan_getFilterLogs
+      parameters:
+      - description: The filter ID
+        explode: false
+        in: path
+        name: Id
+        required: true
+        schema:
+          description: The filter ID
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getFilterLogs'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getLogs/:
+    post:
+      description: Returns an array of all logs matching a given filter object.
+      operationId: qan_getLogs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Input_getLogs'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getLogs'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getProof/:
+    post:
+      description: Returns the account and storage values of the specified account
+        including the Merkle-proof.
+      operationId: qan_getProof
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Input_getProof'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getProof'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getStorageAt/:
+    post:
+      description: Returns the value from a storage position at a given address.
+      operationId: qan_getStorageAt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Input_getStorageAt'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getStorageAt'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getTransactionByBlockHashAndIndex/{blockHash}/{index}/:
+    get:
+      description: Returns information about a transaction given a blockhash and transaction
+        index position.
+      operationId: qan_getTransactionByBlockHashAndIndex
+      parameters:
+      - examples:
+          with 0x, lowercase:
+            value: 0x4e3a3754410177e6937ef1f84bba68ea139e8d1a2258c5f85db9f1cd715a1bdd
+          with 0x, uppercase:
+            value: 0X4E3A3754410177E6937EF1F84BBA68EA139E8D1A2258C5F85DB9F1CD715A1BDD
+        explode: false
+        in: path
+        name: blockHash
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: An integer of the transaction index position
+        example: "0"
+        explode: false
+        in: path
+        name: index
+        required: true
+        schema:
+          description: An integer of the transaction index position
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getTransactionByBlockHashAndIndex'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getTransactionByBlockNumberAndIndex/{blockNumber}/{index}/:
+    get:
+      description: Returns information about a transaction given a block number and
+        transaction index position.
+      operationId: qan_getTransactionByBlockNumberAndIndex
+      parameters:
+      - description: "The block number in hexadecimal or decimal format or the string\
+          \ latest, earliest, pending, see the default block parameter description\
+          \ in the official Ethereum documentation"
+        examples:
+          latest block number:
+            value: latest
+        explode: false
+        in: path
+        name: blockNumber
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: An integer of the transaction index position
+        example: "0"
+        explode: false
+        in: path
+        name: index
+        required: true
+        schema:
+          description: An integer of the transaction index position
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getTransactionByBlockNumberAndIndex'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getTransactionByHash/{hash}/:
+    get:
+      description: Returns the information about a transaction from a transaction
+        hash.
+      operationId: qan_getTransactionByHash
+      parameters:
+      - description: The hash of a transaction
+        example: 0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060
+        explode: false
+        in: path
+        name: hash
+        required: true
+        schema:
+          description: The hash of a transaction
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getTransactionByHash'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getTransactionCount/{Address}/{BlockNumber}/:
+    get:
+      description: Returns the number of transactions sent from an address.
+      operationId: qan_getTransactionCount
+      parameters:
+      - description: The address from which the transaction count to be checked
+        examples:
+          with 0x, lowercase:
+            value: 0xa1e4380a3b1f749673e270229993ee55f35663b4
+          with 0x, mixed case:
+            value: 0xA1E4380A3B1f749673E270229993eE55F35663b4
+          with 0x, uppercase:
+            value: 0XA1E4380A3B1F749673E270229993EE55F35663B4
+          without 0x, mixed case:
+            value: A1E4380A3B1f749673E270229993eE55F35663b4
+        explode: false
+        in: path
+        name: Address
+        required: true
+        schema:
+          description: The address from which the transaction count to be checked
+          type: string
+        style: simple
+      - description: "The block number in hexadecimal or decimal format or the string\
+          \ latest, earliest, pending, see the default block parameter description\
+          \ in the official Ethereum documentation"
+        examples:
+          latest block number:
+            value: latest
+        explode: false
+        in: path
+        name: BlockNumber
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getTransactionCount'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getTransactionReceipt/{Hash}/:
+    get:
+      description: Returns the receipt of a transaction by transaction hash.
+      operationId: qan_getTransactionReceipt
+      parameters:
+      - description: The hash of a transaction
+        examples:
+          with 0x, lowercase:
+            value: 0x4e3a3754410177e6937ef1f84bba68ea139e8d1a2258c5f85db9f1cd715a1bdd
+          with 0x, uppercase:
+            value: 0X4E3A3754410177E6937EF1F84BBA68EA139E8D1A2258C5F85DB9F1CD715A1BDD
+        explode: false
+        in: path
+        name: Hash
+        required: true
+        schema:
+          description: The hash of a transaction
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getTransactionReceipt'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getUncleCountByBlockHash/{Hash}/:
+    get:
+      description: Returns the number of uncles for the block matching the given block
+        hash.
+      operationId: qan_getUncleCountByBlockHash
+      parameters:
+      - description: The hash of the block to get uncles for
+        example: 0x4e216c95f527e9ba0f1161a1c4609b893302c704f05a520da8141ca91878f63e
+        explode: false
+        in: path
+        name: Hash
+        required: true
+        schema:
+          description: The hash of the block to get uncles for
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getUncleCountByBlockHash'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /getUncleCountByBlockNumber/{BlockNumber}/:
+    get:
+      description: Returns the number of uncles for the block matching the given block
+        number.
+      operationId: qan_getUncleCountByBlockNumber
+      parameters:
+      - description: "The block number in hexadecimal or decimal format or the string\
+          \ latest, earliest, pending, see the default block parameter description\
+          \ in the official Ethereum documentation"
+        example: "15537381"
+        explode: false
+        in: path
+        name: BlockNumber
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_getUncleCountByBlockNumber'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /maxPriorityFeePerGas/:
+    get:
+      description: Get the priority fee needed to be included in a block.
+      operationId: qan_maxPriorityFeePerGas
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_maxPriorityFeePerGas'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /newBlockFilter/:
+    get:
+      description: "Creates a filter in the node, to notify when a new block arrives."
+      operationId: qan_newBlockFilter
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_newBlockFilter'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /newFilter/:
+    post:
+      description: "Creates a filter object, based on filter options, to notify when\
+        \ the state changes (logs)."
+      operationId: qan_newFilter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Input_newFilter'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_newFilter'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /newPendingTransactionFilter/:
+    get:
+      description: Creates a filter in the node to notify when new pending transactions
+        arrive.
+      operationId: qan_newPendingTransactionFilter
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_newPendingTransactionFilter'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /sendRawTransaction/:
+    post:
+      description: Creates new message call transaction or a contract creation for
+        signed transactions.
+      operationId: qan_sendRawTransaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Input_sendRawTransaction'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_sendRawTransaction'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /subscribe/:
+    post:
+      description: Starts a subscription to a specific event.
+      operationId: qan_subscribe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Input_subscribe'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_subscribe'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /syncing/:
+    get:
+      description: Returns an object with the sync status of the node if the node
+        is out-of-sync and is syncing. Returns null when the node is already in sync.
+      operationId: qan_syncing
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_syncing'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /uninstallFilter/{FilterId}/:
+    get:
+      description: Uninstalls a filter with the given filter id.
+      operationId: qan_uninstallFilter
+      parameters:
+      - description: "The filter ID that needs to be uninstalled. It should always\
+          \ be called when watch is no longer needed. Additionally, Filters timeout\
+          \ when they aren't requested with eth_getFilterChanges for a period of time"
+        explode: false
+        in: path
+        name: FilterId
+        required: true
+        schema:
+          description: "The filter ID that needs to be uninstalled. It should always\
+            \ be called when watch is no longer needed. Additionally, Filters timeout\
+            \ when they aren't requested with eth_getFilterChanges for a period of\
+            \ time"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_uninstallFilter'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /unsubscribe/{SubscriptionId}/:
+    get:
+      description: Cancels an existing subscription so that no further events are
+        sent.
+      operationId: qan_unsubscribe
+      parameters:
+      - description: A subscription ID that was previously generated in a eth_subscribe
+          RPC request
+        explode: false
+        in: path
+        name: SubscriptionId
+        required: true
+        schema:
+          description: A subscription ID that was previously generated in a eth_subscribe
+            RPC request
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output_unsubscribe'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+  /xlinkValid/:
+    get:
+      operationId: qan_xlinkValid
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Qan_xlinkValidResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+components:
+  schemas:
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: "Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'"
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value: {}
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of
+            the problem.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of
+            the problem.
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          format: int64
+          type: integer
+        title:
+          description: "A short, human-readable summary of the problem type. This\
+            \ value should not change between occurrences of the error."
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          format: uri
+          type: string
+    EstimateGasObject:
+      additionalProperties: false
+      properties:
+        Balance:
+          description: Fake balance to set for the account before executing the call
+          type: string
+        Code:
+          description: Fake EVM bytecode to inject into the account before executing
+            the call
+          format: int32
+          type: integer
+        Nonce:
+          description: Fake nonce to set for the account before executing the call
+          type: string
+        State:
+          description: Fake key-value mapping to override all slots in the account
+            storage before executing the call
+          type: string
+        StateDiff:
+          description: Fake key-value mapping to override individual slots in the
+            account storage before executing the call
+          type: string
+    FilterObject:
+      additionalProperties: false
+      properties:
+        Address:
+          description: The contract address or a list of addresses from which logs
+            should originate
+          type: string
+        FromBlock:
+          type: string
+        ToBlock:
+          type: string
+        Topics:
+          items:
+            type: string
+          type: array
+      required:
+      - Address
+      - FromBlock
+      - ToBlock
+      - Topics
+    Input_call:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        BlockNumber:
+          type: string
+        Transaction:
+          $ref: '#/components/schemas/Params_Transaction'
+      required:
+      - BlockNumber
+      - Transaction
+    Input_estimateGas:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Object:
+          $ref: '#/components/schemas/EstimateGasObject'
+        Transaction:
+          $ref: '#/components/schemas/Params_Transaction'
+      required:
+      - Transaction
+    Input_feeHistory:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        BlockCount:
+          default: 2
+          description: The number of blocks in the requested range. Between 1 and
+            1024 blocks can be requested in a single query. It will return less than
+            the requested range if not all blocks are available
+          format: int32
+          type: integer
+        NewestBlock:
+          default: latest
+          description: "The highest number block of the requested range in hexadecimal\
+            \ format or tags. The supported tag values include earliest for the earliest/genesis\
+            \ block, latest for the latest mined block, pending for the pending state/transactions."
+          type: string
+        RewardPercentiles:
+          description: "A list of percentile values with a monotonic increase in value.\
+            \ The transactions will be ranked by effective tip per gas for each block\
+            \ in the requested range, and the corresponding effective tip for the\
+            \ percentile will be calculated while taking gas consumption into consideration"
+          items:
+            format: int32
+            minimum: 0
+            type: integer
+          type: array
+      required:
+      - BlockCount
+      - NewestBlock
+      - RewardPercentiles
+    Input_getLogs:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Address:
+          description: The contract address or a list of addresses from which logs
+            should originate
+          type: string
+        BlockHash:
+          description: "With the addition of EIP-234, blockHash is a new filter option\
+            \ that restricts the logs returned to the block number referenced in the\
+            \ blockHash. Using the blockHash field is equivalent to setting the fromBlock\
+            \ and toBlock to the block number the blockHash references. If blockHash\
+            \ is present in the filter criteria, neither fromBlock nor toBlock is\
+            \ allowed"
+          type: string
+        FromBlock:
+          description: "The block number as a string in decimal format or tags. The\
+            \ supported tag values include earliest for the earliest/genesis block,\
+            \ latest for the latest mined block, pending for the pending state/transactions."
+          type: string
+        ToBlock:
+          description: "The block number as a string in decimal format or tags. The\
+            \ supported tag values include earliest for the earliest/genesis block,\
+            \ latest for the latest mined block, pending for the pending state/transactions."
+          type: string
+        Topics:
+          description: "An array of DATA topics and also, the topics are order-dependent.\
+            \ Visit this official page to learn more about topics"
+          items:
+            type: string
+          type: array
+    Input_getProof:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Address:
+          type: string
+        BlockNumber:
+          default: latest
+          type: string
+        StorageKeys:
+          description: An array of storage-keys that should be proofed and included
+          items:
+            type: string
+          type: array
+      required:
+      - Address
+      - StorageKeys
+    Input_getStorageAt:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Address:
+          description: The address to check for storage
+          type: string
+        BlockNumber:
+          type: string
+        Position:
+          description: The integer of the position in storage
+          type: string
+      required:
+      - Address
+      - BlockNumber
+      - Position
+    Input_newFilter:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        FilterObject:
+          $ref: '#/components/schemas/FilterObject'
+      required:
+      - FilterObject
+    Input_sendRawTransaction:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Data:
+          description: "The signed transaction (typically signed with a library, using\
+            \ your private key)"
+          type: string
+      required:
+      - Data
+    Input_subscribe:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Data: {}
+        Flag:
+          default: false
+          description: "If true, method will return the full transaction data, otherwise\
+            \ only the transaction hash"
+          type: boolean
+        SubscriptionName:
+          description: "The type of event you want to subscribe to (i.e., newHeads,\
+            \ logs, newPendingTransactions)"
+          type: string
+      required:
+      - Data
+      - Flag
+      - SubscriptionName
+    Output_accounts:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Accounts:
+        - Accounts
+        - Accounts
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Accounts:
+          description: An array of addresses owned by the client
+          items:
+            type: string
+          type: array
+      required:
+      - Accounts
+    Output_blobBaseFee:
+      additionalProperties: false
+      example:
+        BaseFee: BaseFee
+        $schema: https://openapi-generator.tech
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        BaseFee:
+          description: "The expected base fee in wei, represented in decimal format"
+          type: string
+      required:
+      - BaseFee
+    Output_blockNumber:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        BlockNumber: BlockNumber
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        BlockNumber:
+          description: An integer value of the latest block number encoded as decimal
+          type: string
+      required:
+      - BlockNumber
+    Output_call:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Data: Data
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Data:
+          description: The return value of the executed contract method
+          type: string
+      required:
+      - Data
+    Output_chainId:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        ChainId: ChainId
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        ChainId:
+          description: A decimal value in string format which represents an integer
+            of the chain ID
+          type: string
+      required:
+      - ChainId
+    Output_estimateGas:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        EstimatedGas: EstimatedGas
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        EstimatedGas:
+          description: The estimated amount of gas used
+          type: string
+      required:
+      - EstimatedGas
+    Output_feeHistory:
+      additionalProperties: false
+      example:
+        GasUsedRatio:
+        - 0.8008281904610115
+        - 0.8008281904610115
+        $schema: https://openapi-generator.tech
+        BaseFeePerGas:
+        - BaseFeePerGas
+        - BaseFeePerGas
+        OldestBlock: OldestBlock
+        Reward:
+        - - Reward
+          - Reward
+        - - Reward
+          - Reward
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        BaseFeePerGas:
+          description: "An array of block base fees per gas. This includes the next\
+            \ block after the newest of the returned range, because this value can\
+            \ be derived from the newest block. Zeroes are returned for pre-EIP-1559\
+            \ blocks"
+          items:
+            type: string
+          type: array
+        GasUsedRatio:
+          description: An array of block gas used ratios. These are calculated as
+            the ratio of gasUsed and gasLimit
+          items:
+            format: double
+            type: number
+          type: array
+        OldestBlock:
+          description: The lowest number block of the returned range encoded in decimal
+            format
+          type: string
+        Reward:
+          description: An array of effective priority fees per gas data points from
+            a single block. All zeroes are returned if the block is empty
+          items:
+            items:
+              type: string
+            type: array
+          type: array
+      required:
+      - BaseFeePerGas
+      - GasUsedRatio
+      - OldestBlock
+      - Reward
+    Output_gasPrice:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        GasPrice: GasPrice
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        GasPrice:
+          description: The decimal value of the current gas price in wei
+          type: string
+      required:
+      - GasPrice
+    Output_getAccount:
+      additionalProperties: false
+      example:
+        Nonce: Nonce
+        CodeHash: CodeHash
+        $schema: https://openapi-generator.tech
+        StorageRoot: StorageRoot
+        Balance: Balance
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Balance:
+          description: The current balance of the account in wei
+          type: string
+        CodeHash:
+          description: A 32 byte hash of the code of the account
+          type: string
+        Nonce:
+          description: The transaction count of an account
+          type: string
+        StorageRoot:
+          description: The hash of the account's storage data
+          type: string
+      required:
+      - Balance
+      - CodeHash
+      - Nonce
+      - StorageRoot
+    Output_getBalance:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Balance: Balance
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Balance:
+          description: "The ETH balance of the specified address in decimal value,\
+            \ measured in wei"
+          type: string
+      required:
+      - Balance
+    Output_getBlockByHash:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Block:
+          Sha3Uncles: Sha3Uncles
+          MixHash: MixHash
+          Withdrawals:
+            ValidatorIndex: 6
+            Address: Address
+            Amount: Amount
+            Index: 0
+          BaseFeePerGas: BaseFeePerGas
+          Difficulty: Difficulty
+          Size: Size
+          ExtraData: ExtraData
+          GasUsed: GasUsed
+          Hash: Hash
+          Timestamp: Timestamp
+          ParentHash: ParentHash
+          StateRoot: StateRoot
+          TotalDifficulty: TotalDifficulty
+          GasLimit: GasLimit
+          Nonce: Nonce
+          Miner: Miner
+          Transactions:
+          - From: From
+            Hash: Hash
+            Nonce: Nonce
+            Input: Input
+            R: R
+            Type: Type
+            MaxFeePerGas: MaxFeePerGas
+            MaxPriorityFeePerGas: MaxPriorityFeePerGas
+            S: S
+            BlockHash: BlockHash
+            TransactionIndex: TransactionIndex
+            V: V
+            Gas: Gas
+            Value: Value
+            GasPrice: GasPrice
+            To: To
+            BlockNumber: BlockNumber
+            ChainId: ChainId
+            AccessList: AccessList
+          - From: From
+            Hash: Hash
+            Nonce: Nonce
+            Input: Input
+            R: R
+            Type: Type
+            MaxFeePerGas: MaxFeePerGas
+            MaxPriorityFeePerGas: MaxPriorityFeePerGas
+            S: S
+            BlockHash: BlockHash
+            TransactionIndex: TransactionIndex
+            V: V
+            Gas: Gas
+            Value: Value
+            GasPrice: GasPrice
+            To: To
+            BlockNumber: BlockNumber
+            ChainId: ChainId
+            AccessList: AccessList
+          TransactionsRoot: TransactionsRoot
+          LogsBloom: LogsBloom
+          Number: Number
+          ReceiptsRoot: ReceiptsRoot
+          Uncles:
+          - Uncles
+          - Uncles
+          WithdrawalsRoot: WithdrawalsRoot
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Block:
+          $ref: '#/components/schemas/Response_Block'
+      required:
+      - Block
+    Output_getBlockByNumber:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Block:
+          Sha3Uncles: Sha3Uncles
+          MixHash: MixHash
+          Withdrawals:
+            ValidatorIndex: 6
+            Address: Address
+            Amount: Amount
+            Index: 0
+          BaseFeePerGas: BaseFeePerGas
+          Difficulty: Difficulty
+          Size: Size
+          ExtraData: ExtraData
+          GasUsed: GasUsed
+          Hash: Hash
+          Timestamp: Timestamp
+          ParentHash: ParentHash
+          StateRoot: StateRoot
+          TotalDifficulty: TotalDifficulty
+          GasLimit: GasLimit
+          Nonce: Nonce
+          Miner: Miner
+          Transactions:
+          - From: From
+            Hash: Hash
+            Nonce: Nonce
+            Input: Input
+            R: R
+            Type: Type
+            MaxFeePerGas: MaxFeePerGas
+            MaxPriorityFeePerGas: MaxPriorityFeePerGas
+            S: S
+            BlockHash: BlockHash
+            TransactionIndex: TransactionIndex
+            V: V
+            Gas: Gas
+            Value: Value
+            GasPrice: GasPrice
+            To: To
+            BlockNumber: BlockNumber
+            ChainId: ChainId
+            AccessList: AccessList
+          - From: From
+            Hash: Hash
+            Nonce: Nonce
+            Input: Input
+            R: R
+            Type: Type
+            MaxFeePerGas: MaxFeePerGas
+            MaxPriorityFeePerGas: MaxPriorityFeePerGas
+            S: S
+            BlockHash: BlockHash
+            TransactionIndex: TransactionIndex
+            V: V
+            Gas: Gas
+            Value: Value
+            GasPrice: GasPrice
+            To: To
+            BlockNumber: BlockNumber
+            ChainId: ChainId
+            AccessList: AccessList
+          TransactionsRoot: TransactionsRoot
+          LogsBloom: LogsBloom
+          Number: Number
+          ReceiptsRoot: ReceiptsRoot
+          Uncles:
+          - Uncles
+          - Uncles
+          WithdrawalsRoot: WithdrawalsRoot
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Block:
+          $ref: '#/components/schemas/Response_Block'
+      required:
+      - Block
+    Output_getBlockReceipts:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        TransactionReceipts:
+        - Status: Status
+          From: From
+          GasUsed: GasUsed
+          Logs:
+          - Topics:
+            - Topics
+            - Topics
+            Address: Address
+            BlockHash: BlockHash
+            LogIndex: LogIndex
+            TransactionIndex: TransactionIndex
+            TransactionHash: TransactionHash
+            Data: Data
+            BlockNumber: BlockNumber
+            Removed: true
+          - Topics:
+            - Topics
+            - Topics
+            Address: Address
+            BlockHash: BlockHash
+            LogIndex: LogIndex
+            TransactionIndex: TransactionIndex
+            TransactionHash: TransactionHash
+            Data: Data
+            BlockNumber: BlockNumber
+            Removed: true
+          Type: Type
+          LogsBloom: LogsBloom
+          BlockHash: BlockHash
+          TransactionIndex: TransactionIndex
+          EffectiveGasPrice: EffectiveGasPrice
+          TransactionHash: TransactionHash
+          To: To
+          BlockNumber: BlockNumber
+          CumulativeGasUsed: CumulativeGasUsed
+          ContractAddress: ContractAddress
+        - Status: Status
+          From: From
+          GasUsed: GasUsed
+          Logs:
+          - Topics:
+            - Topics
+            - Topics
+            Address: Address
+            BlockHash: BlockHash
+            LogIndex: LogIndex
+            TransactionIndex: TransactionIndex
+            TransactionHash: TransactionHash
+            Data: Data
+            BlockNumber: BlockNumber
+            Removed: true
+          - Topics:
+            - Topics
+            - Topics
+            Address: Address
+            BlockHash: BlockHash
+            LogIndex: LogIndex
+            TransactionIndex: TransactionIndex
+            TransactionHash: TransactionHash
+            Data: Data
+            BlockNumber: BlockNumber
+            Removed: true
+          Type: Type
+          LogsBloom: LogsBloom
+          BlockHash: BlockHash
+          TransactionIndex: TransactionIndex
+          EffectiveGasPrice: EffectiveGasPrice
+          TransactionHash: TransactionHash
+          To: To
+          BlockNumber: BlockNumber
+          CumulativeGasUsed: CumulativeGasUsed
+          ContractAddress: ContractAddress
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        TransactionReceipts:
+          description: An array of transaction receipt objects
+          items:
+            $ref: '#/components/schemas/Response_TransactionReceipt'
+          type: array
+      required:
+      - TransactionReceipts
+    Output_getBlockTransactionCountByHash:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        TransactionCount: TransactionCount
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        TransactionCount:
+          description: "The number of transactions associated with a specific block,\
+            \ in decimal value"
+          type: string
+      required:
+      - TransactionCount
+    Output_getBlockTransactionCountByNumber:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        TransactionCount: TransactionCount
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        TransactionCount:
+          description: "The number of transactions associated with a specific block,\
+            \ in decimal value"
+          type: string
+      required:
+      - TransactionCount
+    Output_getCode:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Bytecode: Bytecode
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Bytecode:
+          description: The bytecode from a given address
+          type: string
+      required:
+      - Bytecode
+    Output_getFilterChanges:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Result: ""
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Result: {}
+      required:
+      - Result
+    Output_getFilterLogs:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Logs:
+        - Topics:
+          - Topics
+          - Topics
+          Address: Address
+          BlockHash: BlockHash
+          LogIndex: LogIndex
+          TransactionIndex: TransactionIndex
+          TransactionHash: TransactionHash
+          Data: Data
+          BlockNumber: BlockNumber
+          Removed: true
+        - Topics:
+          - Topics
+          - Topics
+          Address: Address
+          BlockHash: BlockHash
+          LogIndex: LogIndex
+          TransactionIndex: TransactionIndex
+          TransactionHash: TransactionHash
+          Data: Data
+          BlockNumber: BlockNumber
+          Removed: true
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Logs:
+          description: "An array of log objects, or an empty array if nothing has\
+            \ changed since last poll"
+          items:
+            $ref: '#/components/schemas/Response_Log'
+          type: array
+      required:
+      - Logs
+    Output_getLogs:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Logs:
+        - Topics:
+          - Topics
+          - Topics
+          Address: Address
+          BlockHash: BlockHash
+          LogIndex: LogIndex
+          TransactionIndex: TransactionIndex
+          TransactionHash: TransactionHash
+          Data: Data
+          BlockNumber: BlockNumber
+          Removed: true
+        - Topics:
+          - Topics
+          - Topics
+          Address: Address
+          BlockHash: BlockHash
+          LogIndex: LogIndex
+          TransactionIndex: TransactionIndex
+          TransactionHash: TransactionHash
+          Data: Data
+          BlockNumber: BlockNumber
+          Removed: true
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Logs:
+          description: "An array of log objects, or an empty array if nothing has\
+            \ changed since last poll"
+          items:
+            $ref: '#/components/schemas/Response_Log'
+          type: array
+      required:
+      - Logs
+    Output_getProof:
+      additionalProperties: false
+      example:
+        Nonce: Nonce
+        AccountProof: AccountProof
+        CodeHash: CodeHash
+        $schema: https://openapi-generator.tech
+        Address: Address
+        StorageHash: StorageHash
+        StorageProof:
+        - Proof: Proof
+          Value: Value
+          Key: Key
+        - Proof: Proof
+          Value: Value
+          Key: Key
+        Balance: Balance
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        AccountProof:
+          description: An array of rlp-serialized MerkleTree-Nodes which starts with
+            the stateRoot-Node and follows the path of the SHA3 address as key
+          type: string
+        Address:
+          description: The address associated with the account
+          type: string
+        Balance:
+          description: The current balance of the account in wei
+          type: string
+        CodeHash:
+          description: A 32 byte hash of the code of the account
+          type: string
+        Nonce:
+          description: The hash of the generated proof-of-work. Null if pending
+          nullable: true
+          type: string
+        StorageHash:
+          description: A 32 byte SHA3 of the storageRoot. All storage will deliver
+            a MerkleProof starting with this rootHash
+          type: string
+        StorageProof:
+          description: 'An array of storage-entries as requested. Each entry is an
+            object with the following fields:'
+          items:
+            $ref: '#/components/schemas/Response_StorageEntry'
+          type: array
+      required:
+      - AccountProof
+      - Address
+      - Balance
+      - CodeHash
+      - Nonce
+      - StorageHash
+      - StorageProof
+    Output_getStorageAt:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Value: Value
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Value:
+          description: The value from a storage position at a given address
+          type: string
+      required:
+      - Value
+    Output_getTransactionByBlockHashAndIndex:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Transaction:
+          From: From
+          Hash: Hash
+          Nonce: Nonce
+          Input: Input
+          R: R
+          Type: Type
+          MaxFeePerGas: MaxFeePerGas
+          MaxPriorityFeePerGas: MaxPriorityFeePerGas
+          S: S
+          BlockHash: BlockHash
+          TransactionIndex: TransactionIndex
+          V: V
+          Gas: Gas
+          Value: Value
+          GasPrice: GasPrice
+          To: To
+          BlockNumber: BlockNumber
+          ChainId: ChainId
+          AccessList: AccessList
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Transaction:
+          $ref: '#/components/schemas/Response_Transaction'
+      required:
+      - Transaction
+    Output_getTransactionByBlockNumberAndIndex:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Transaction:
+          From: From
+          Hash: Hash
+          Nonce: Nonce
+          Input: Input
+          R: R
+          Type: Type
+          MaxFeePerGas: MaxFeePerGas
+          MaxPriorityFeePerGas: MaxPriorityFeePerGas
+          S: S
+          BlockHash: BlockHash
+          TransactionIndex: TransactionIndex
+          V: V
+          Gas: Gas
+          Value: Value
+          GasPrice: GasPrice
+          To: To
+          BlockNumber: BlockNumber
+          ChainId: ChainId
+          AccessList: AccessList
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Transaction:
+          $ref: '#/components/schemas/Response_Transaction'
+      required:
+      - Transaction
+    Output_getTransactionByHash:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Transaction:
+          From: From
+          Hash: Hash
+          Nonce: Nonce
+          Input: Input
+          R: R
+          Type: Type
+          MaxFeePerGas: MaxFeePerGas
+          MaxPriorityFeePerGas: MaxPriorityFeePerGas
+          S: S
+          BlockHash: BlockHash
+          TransactionIndex: TransactionIndex
+          V: V
+          Gas: Gas
+          Value: Value
+          GasPrice: GasPrice
+          To: To
+          BlockNumber: BlockNumber
+          ChainId: ChainId
+          AccessList: AccessList
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Transaction:
+          $ref: '#/components/schemas/Response_Transaction'
+      required:
+      - Transaction
+    Output_getTransactionCount:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        TransactionCount: TransactionCount
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        TransactionCount:
+          description: The integer of the number of transactions sent from an address
+            encoded as decimal
+          type: string
+      required:
+      - TransactionCount
+    Output_getTransactionReceipt:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        TransactionReceipt:
+          Status: Status
+          From: From
+          GasUsed: GasUsed
+          Logs:
+          - Topics:
+            - Topics
+            - Topics
+            Address: Address
+            BlockHash: BlockHash
+            LogIndex: LogIndex
+            TransactionIndex: TransactionIndex
+            TransactionHash: TransactionHash
+            Data: Data
+            BlockNumber: BlockNumber
+            Removed: true
+          - Topics:
+            - Topics
+            - Topics
+            Address: Address
+            BlockHash: BlockHash
+            LogIndex: LogIndex
+            TransactionIndex: TransactionIndex
+            TransactionHash: TransactionHash
+            Data: Data
+            BlockNumber: BlockNumber
+            Removed: true
+          Type: Type
+          LogsBloom: LogsBloom
+          BlockHash: BlockHash
+          TransactionIndex: TransactionIndex
+          EffectiveGasPrice: EffectiveGasPrice
+          TransactionHash: TransactionHash
+          To: To
+          BlockNumber: BlockNumber
+          CumulativeGasUsed: CumulativeGasUsed
+          ContractAddress: ContractAddress
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        TransactionReceipt:
+          $ref: '#/components/schemas/Response_TransactionReceipt'
+      required:
+      - TransactionReceipt
+    Output_getUncleCountByBlockHash:
+      additionalProperties: false
+      example:
+        UncleCount: UncleCount
+        $schema: https://openapi-generator.tech
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        UncleCount:
+          type: string
+      required:
+      - UncleCount
+    Output_getUncleCountByBlockNumber:
+      additionalProperties: false
+      example:
+        UncleCount: UncleCount
+        $schema: https://openapi-generator.tech
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        UncleCount:
+          type: string
+      required:
+      - UncleCount
+    Output_maxPriorityFeePerGas:
+      additionalProperties: false
+      example:
+        MaxPriorityFeePerGas: MaxPriorityFeePerGas
+        $schema: https://openapi-generator.tech
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        MaxPriorityFeePerGas:
+          description: The hex value of the priority fee needed to be included in
+            a block
+          type: string
+      required:
+      - MaxPriorityFeePerGas
+    Output_newBlockFilter:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        FilterId: FilterId
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        FilterId:
+          description: A filter id to be used when calling eth_getFilterChanges
+          type: string
+      required:
+      - FilterId
+    Output_newFilter:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        FilterId: FilterId
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        FilterId:
+          description: A filter id to be used when calling eth_getFilterChanges
+          type: string
+      required:
+      - FilterId
+    Output_newPendingTransactionFilter:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        FilterId: FilterId
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        FilterId:
+          description: A filter id to be used when calling eth_getFilterChanges
+          type: string
+      required:
+      - FilterId
+    Output_sendRawTransaction:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        TransactionHash: TransactionHash
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        TransactionHash:
+          description: "The transaction hash, or the zero hash if the transaction\
+            \ is not yet available"
+          type: string
+      required:
+      - TransactionHash
+    Output_subscribe:
+      additionalProperties: false
+      example:
+        SubscriptionId: SubscriptionId
+        $schema: https://openapi-generator.tech
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        SubscriptionId:
+          description: The hex encoded subscription ID. This ID will be attached to
+            all received events and can also be used to cancel the subscription using
+            eth_unsubscribe
+          type: string
+      required:
+      - SubscriptionId
+    Output_syncing:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        SyncStatus:
+          StartingBlock: StartingBlock
+          CurrentBlock: CurrentBlock
+          HighestBlock: HighestBlock
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        SyncStatus:
+          $ref: '#/components/schemas/SyncStatus'
+      required:
+      - SyncStatus
+    Output_uninstallFilter:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Result: true
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Result:
+          description: "Returns true if the filter was successfully uninstalled, otherwise\
+            \ false"
+          type: boolean
+      required:
+      - Result
+    Output_unsubscribe:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+        Result: true
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+        Result:
+          description: A boolean value indicating if the subscription was canceled
+            successfully
+          type: boolean
+      required:
+      - Result
+    Params_Transaction:
+      additionalProperties: false
+      properties:
+        Data:
+          description: "The hash of the method signature and encoded parameters. For\
+            \ more information, see the Contract ABI description in the Solidity documentation."
+          type: string
+        From:
+          description: The address from which the transaction is sent
+          type: string
+        Gas:
+          description: The integer of gas provided for the transaction execution
+          type: string
+        GasPrice:
+          description: The integer of gasPrice used for each paid gas encoded as hexadecimal
+          type: string
+        To:
+          description: The address to which the transaction is addressed
+          type: string
+        Value:
+          description: The integer of value sent with this transaction encoded as
+            hexadecimal
+          type: string
+      required:
+      - To
+    Qan_xlinkValidResponse:
+      additionalProperties: false
+      example:
+        $schema: https://openapi-generator.tech
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          format: uri
+          readOnly: true
+          type: string
+    Response_Block:
+      additionalProperties: false
+      example:
+        Sha3Uncles: Sha3Uncles
+        MixHash: MixHash
+        Withdrawals:
+          ValidatorIndex: 6
+          Address: Address
+          Amount: Amount
+          Index: 0
+        BaseFeePerGas: BaseFeePerGas
+        Difficulty: Difficulty
+        Size: Size
+        ExtraData: ExtraData
+        GasUsed: GasUsed
+        Hash: Hash
+        Timestamp: Timestamp
+        ParentHash: ParentHash
+        StateRoot: StateRoot
+        TotalDifficulty: TotalDifficulty
+        GasLimit: GasLimit
+        Nonce: Nonce
+        Miner: Miner
+        Transactions:
+        - From: From
+          Hash: Hash
+          Nonce: Nonce
+          Input: Input
+          R: R
+          Type: Type
+          MaxFeePerGas: MaxFeePerGas
+          MaxPriorityFeePerGas: MaxPriorityFeePerGas
+          S: S
+          BlockHash: BlockHash
+          TransactionIndex: TransactionIndex
+          V: V
+          Gas: Gas
+          Value: Value
+          GasPrice: GasPrice
+          To: To
+          BlockNumber: BlockNumber
+          ChainId: ChainId
+          AccessList: AccessList
+        - From: From
+          Hash: Hash
+          Nonce: Nonce
+          Input: Input
+          R: R
+          Type: Type
+          MaxFeePerGas: MaxFeePerGas
+          MaxPriorityFeePerGas: MaxPriorityFeePerGas
+          S: S
+          BlockHash: BlockHash
+          TransactionIndex: TransactionIndex
+          V: V
+          Gas: Gas
+          Value: Value
+          GasPrice: GasPrice
+          To: To
+          BlockNumber: BlockNumber
+          ChainId: ChainId
+          AccessList: AccessList
+        TransactionsRoot: TransactionsRoot
+        LogsBloom: LogsBloom
+        Number: Number
+        ReceiptsRoot: ReceiptsRoot
+        Uncles:
+        - Uncles
+        - Uncles
+        WithdrawalsRoot: WithdrawalsRoot
+      properties:
+        BaseFeePerGas:
+          description: A string of the base fee encoded in decimal format. Please
+            note that this response field will not be included in a block requested
+            before the EIP-1559 upgrade
+          nullable: true
+          type: string
+        Difficulty:
+          description: The integer of the difficulty for this block encoded as a decimal
+          type: string
+        ExtraData:
+          description: The “extra data” field of this block
+          type: string
+        GasLimit:
+          description: The maximum gas allowed in this block encoded as a decimal
+          type: string
+        GasUsed:
+          description: The total used gas by all transactions in this block encoded
+            as a decimal
+          type: string
+        Hash:
+          description: The block hash of the requested block. null if pending
+          nullable: true
+          type: string
+        LogsBloom:
+          description: The bloom filter for the logs of the block. null if pending
+          nullable: true
+          type: string
+        Miner:
+          description: The address of the beneficiary to whom the mining rewards were
+            given
+          type: string
+        MixHash:
+          description: A string of a 256-bit hash encoded as a decimal
+          type: string
+        Nonce:
+          description: The hash of the generated proof-of-work. null if pending
+          nullable: true
+          type: string
+        Number:
+          description: The block number of the requested block encoded as a decimal.
+            null if pending
+          nullable: true
+          type: string
+        ParentHash:
+          description: The hash of the parent block
+          type: string
+        ReceiptsRoot:
+          description: The root of the receipts trie of the bloc
+          type: string
+        Sha3Uncles:
+          description: The SHA3 of the uncles data in the block
+          type: string
+        Size:
+          description: The size of this block in bytes as an Integer value encoded
+            as decimal
+          type: string
+        StateRoot:
+          description: The root of the final state trie of the block
+          type: string
+        Timestamp:
+          description: The unix timestamp for when the block was collated
+          type: string
+        TotalDifficulty:
+          description: The integer of the total difficulty of the chain until this
+            block encoded as a decimal
+          type: string
+        Transactions:
+          description: An array of transaction objects - please see eth_getTransactionByHash
+            for exact shape
+          items:
+            $ref: '#/components/schemas/Response_Transaction'
+          type: array
+        TransactionsRoot:
+          description: The root of the transaction trie of the block
+          type: string
+        Uncles:
+          description: An array of uncle hashes
+          items:
+            type: string
+          type: array
+        Withdrawals:
+          $ref: '#/components/schemas/Response_Withdrawals'
+        WithdrawalsRoot:
+          description: "The Merkle root of withdrawal data. Also, please note that\
+            \ this field will not be included in a block requested before the EIP-4895\
+            \ upgrade"
+          nullable: true
+          type: string
+      required:
+      - BaseFeePerGas
+      - Difficulty
+      - ExtraData
+      - GasLimit
+      - GasUsed
+      - Hash
+      - LogsBloom
+      - Miner
+      - MixHash
+      - Nonce
+      - Number
+      - ParentHash
+      - ReceiptsRoot
+      - Sha3Uncles
+      - Size
+      - StateRoot
+      - Timestamp
+      - TotalDifficulty
+      - Transactions
+      - TransactionsRoot
+      - Uncles
+      - Withdrawals
+      - WithdrawalsRoot
+    Response_Log:
+      additionalProperties: false
+      example:
+        Topics:
+        - Topics
+        - Topics
+        Address: Address
+        BlockHash: BlockHash
+        LogIndex: LogIndex
+        TransactionIndex: TransactionIndex
+        TransactionHash: TransactionHash
+        Data: Data
+        BlockNumber: BlockNumber
+        Removed: true
+      properties:
+        Address:
+          description: An address from which this log originated
+          type: string
+        BlockHash:
+          description: The hash of the block where this log was in. null when its
+            a pending log
+          nullable: true
+          type: string
+        BlockNumber:
+          description: The block number where this log was in. null when its a pending
+            log
+          nullable: true
+          type: string
+        Data:
+          description: It contains one or more 32 Bytes non-indexed arguments of the
+            log
+          type: string
+        LogIndex:
+          description: The integer of the log index position in the block. null when
+            its a pending log
+          nullable: true
+          type: string
+        Removed:
+          description: "It is true when the log was removed due to a chain reorganization,\
+            \ and false if it's a valid log"
+          type: boolean
+        Topics:
+          description: "An array of zero to four 32 Bytes DATA of indexed log arguments.\
+            \ In Solidity, the first topic is the hash of the signature of the event\
+            \ (e.g. Deposit(address, bytes32, uint256)), except you declare the event\
+            \ with the anonymous specifier"
+          items:
+            type: string
+          type: array
+        TransactionHash:
+          description: The hash of the transactions this log was created from. null
+            when its a pending log
+          nullable: true
+          type: string
+        TransactionIndex:
+          description: The integer of the transaction's index position that the log
+            was created from. null when it's a pending log
+          nullable: true
+          type: string
+      required:
+      - Address
+      - BlockHash
+      - BlockNumber
+      - Data
+      - LogIndex
+      - Removed
+      - Topics
+      - TransactionHash
+      - TransactionIndex
+    Response_StorageEntry:
+      additionalProperties: false
+      example:
+        Proof: Proof
+        Value: Value
+        Key: Key
+      properties:
+        Key:
+          description: The requested storage key
+          type: string
+        Proof:
+          description: An array of rlp-serialized MerkleTree-Nodes which starts with
+            the stateRoot-Node and follows the path of the SHA3 address as key
+          type: string
+        Value:
+          description: The storage value
+          type: string
+      required:
+      - Key
+      - Proof
+      - Value
+    Response_Transaction:
+      additionalProperties: false
+      example:
+        From: From
+        Hash: Hash
+        Nonce: Nonce
+        Input: Input
+        R: R
+        Type: Type
+        MaxFeePerGas: MaxFeePerGas
+        MaxPriorityFeePerGas: MaxPriorityFeePerGas
+        S: S
+        BlockHash: BlockHash
+        TransactionIndex: TransactionIndex
+        V: V
+        Gas: Gas
+        Value: Value
+        GasPrice: GasPrice
+        To: To
+        BlockNumber: BlockNumber
+        ChainId: ChainId
+        AccessList: AccessList
+      properties:
+        AccessList:
+          description: A list of addresses and storage keys that the transaction plans
+            to access
+          type: string
+        BlockHash:
+          description: The hash of the block where this transaction was in. Null when
+            it's a pending transaction
+          type: string
+        BlockNumber:
+          description: The block number where this transaction was in. Null when it's
+            a pending transaction
+          type: string
+        ChainId:
+          description: "The chain id of the transaction, if any"
+          type: string
+        From:
+          description: The address of the sender
+          type: string
+        Gas:
+          description: "The gas provided by the sender, encoded as decimal"
+          type: string
+        GasPrice:
+          description: The gas price provided by the sender in wei encoded as decimal
+          type: string
+        Hash:
+          description: The hash of the transaction
+          type: string
+        Input:
+          description: The data sent along with the transaction
+          type: string
+        MaxFeePerGas:
+          description: The maximum fee per gas set in the transaction
+          type: string
+        MaxPriorityFeePerGas:
+          description: The maximum priority gas fee set in the transaction
+          type: string
+        Nonce:
+          description: The number of transactions made by the sender prior to this
+            one encoded as decimal
+          type: string
+        R:
+          description: The R field of the signature
+          type: string
+        S:
+          description: The S field of the signature
+          type: string
+        To:
+          description: The address of the receiver. Null when its a contract creation
+            transaction
+          type: string
+        TransactionIndex:
+          description: The integer of the transaction's index position that the log
+            was created from. Null when it's a pending log
+          type: string
+        Type:
+          description: The transaction type
+          type: string
+        V:
+          description: The standardized V field of the signature
+          type: string
+        Value:
+          description: The value transferred in wei encoded as decimal
+          type: string
+    Response_TransactionReceipt:
+      additionalProperties: false
+      example:
+        Status: Status
+        From: From
+        GasUsed: GasUsed
+        Logs:
+        - Topics:
+          - Topics
+          - Topics
+          Address: Address
+          BlockHash: BlockHash
+          LogIndex: LogIndex
+          TransactionIndex: TransactionIndex
+          TransactionHash: TransactionHash
+          Data: Data
+          BlockNumber: BlockNumber
+          Removed: true
+        - Topics:
+          - Topics
+          - Topics
+          Address: Address
+          BlockHash: BlockHash
+          LogIndex: LogIndex
+          TransactionIndex: TransactionIndex
+          TransactionHash: TransactionHash
+          Data: Data
+          BlockNumber: BlockNumber
+          Removed: true
+        Type: Type
+        LogsBloom: LogsBloom
+        BlockHash: BlockHash
+        TransactionIndex: TransactionIndex
+        EffectiveGasPrice: EffectiveGasPrice
+        TransactionHash: TransactionHash
+        To: To
+        BlockNumber: BlockNumber
+        CumulativeGasUsed: CumulativeGasUsed
+        ContractAddress: ContractAddress
+      properties:
+        BlockHash:
+          description: The hash of the block. null when pending
+          type: string
+        BlockNumber:
+          type: string
+        ContractAddress:
+          description: "The contract address created if the transaction was a contract\
+            \ creation, otherwise null"
+          type: string
+        CumulativeGasUsed:
+          description: The total amount of gas used when this transaction was executed
+            in the block
+          type: string
+        EffectiveGasPrice:
+          description: The actual value per gas deducted from the sender account
+          type: string
+        From:
+          description: The address of the sender
+          type: string
+        GasUsed:
+          description: The amount of gas used by this specific transaction alone
+          type: string
+        Logs:
+          description: An array of log objects that generated this transaction
+          items:
+            $ref: '#/components/schemas/Response_Log'
+          type: array
+        LogsBloom:
+          description: The bloom filter for light clients to quickly retrieve related
+            logs
+          type: string
+        Status:
+          description: It is either 1 (success) or 0 (failure) encoded as a decimal
+          type: string
+        To:
+          description: The address of the receiver. null when it's a contract creation
+            transaction
+          type: string
+        TransactionHash:
+          description: The hash of the transaction
+          type: string
+        TransactionIndex:
+          description: An index of the transaction in the block
+          type: string
+        Type:
+          description: The value type
+          type: string
+    Response_Withdrawals:
+      additionalProperties: false
+      example:
+        ValidatorIndex: 6
+        Address: Address
+        Amount: Amount
+        Index: 0
+      properties:
+        Address:
+          description: The address to which the withdrawn amount is sent
+          type: string
+        Amount:
+          description: "The amount of ether, provided in decimal format, corresponding\
+            \ to a certain value in gwei"
+          type: string
+        Index:
+          description: The index of the withdrawal to uniquely identify each withdrawal
+          format: int32
+          type: integer
+        ValidatorIndex:
+          description: The index of the validator who initiated the withdrawal
+          format: int32
+          type: integer
+      required:
+      - Address
+      - Amount
+      - Index
+      - ValidatorIndex
+    SyncStatus:
+      additionalProperties: false
+      example:
+        StartingBlock: StartingBlock
+        CurrentBlock: CurrentBlock
+        HighestBlock: HighestBlock
+      properties:
+        CurrentBlock:
+          description: "The current block, same as eth_blockNumber encoded as decimal"
+          type: string
+        HighestBlock:
+          description: The estimated highest block encoded as decimal
+          type: string
+        StartingBlock:
+          description: The block at which the import started encoded as decimal
+          type: string
+      required:
+      - CurrentBlock
+      - HighestBlock
+      - StartingBlock
